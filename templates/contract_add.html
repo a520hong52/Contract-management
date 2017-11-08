@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta charset="utf-8" />
+		<title>大道金服-自动化运维平台</title>
+		<meta name="description" content="Restyling jQuery UI Widgets and Elements" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+		<link rel="stylesheet" href="/static/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="/static/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="/static/css/jquery-ui.custom.min.css" />
+		<link rel="stylesheet" href="/static/css/daterangepicker.css" />
+		<link rel="stylesheet" href="/static/css/ace-fonts.css" />
+		<link rel="stylesheet" href="/static/css/ace.min.css" id="main-ace-style" />
+		<!--[if lte IE 9]>
+			<link rel="stylesheet" href="/static/css/ace-part2.min.css" />
+		<![endif]-->
+		<!--[if lte IE 9]>
+		  <link rel="stylesheet" href="/static/css/ace-ie.min.css" />
+		<![endif]-->
+		<script src="/static/js/ace-extra.min.js"></script>
+		<!--[if lte IE 8]>
+		<script src="/static/js/html5shiv.min.js"></script>
+		<script src="/static/js/respond.min.js"></script>
+		<![endif]-->
+	</head>
+
+	<body class="no-skin">
+		<!-- #section:basics/navbar.layout -->
+		<div id="navbar" class="navbar navbar-default">
+
+			<div class="navbar-container" id="navbar-container">
+				<button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler">
+					<span class="icon-bar"></span>
+
+					<span class="icon-bar"></span>
+
+					<span class="icon-bar"></span>
+				</button>
+
+				<div class="navbar-header pull-left">
+					<!-- #section:basics/navbar.layout.brand -->
+					<a href="index.html" class="navbar-brand">
+						<small>
+							<img src="/static/img/logo.png" alt="" />
+						</small>
+					</a>
+				</div>
+
+				<!-- #section:basics/navbar.dropdown -->
+				<div class="navbar-buttons navbar-header pull-right" role="navigation">
+					<ul class="nav ace-nav">
+
+						<!-- #section:basics/navbar.user_menu -->
+						<li class="light-blue">
+							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
+								<img class="nav-user-photo" src="/static/img/user.jpg" alt="Jason's Photo" />
+								<span class="user-info">
+									欢迎您<br />
+									陈子昂
+								</span>
+
+								<i class="ace-icon fa fa-caret-down"></i>
+							</a>
+
+							<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+								<li>
+									<a href="#">
+										<i class="ace-icon fa fa-cog"></i>
+										系统设置
+									</a>
+								</li>
+
+								<li>
+									<a href="profile.html">
+										<i class="ace-icon fa fa-user"></i>
+										个人信息设置
+									</a>
+								</li>
+
+								<li class="divider"></li>
+
+								<li>
+									<a href="#">
+										<i class="ace-icon fa fa-power-off"></i>
+										登出
+									</a>
+								</li>
+							</ul>
+						</li>
+
+						<!-- /section:basics/navbar.user_menu -->
+					</ul>
+				</div>
+
+				<!-- /section:basics/navbar.dropdown -->
+			</div><!-- /.navbar-container -->
+		</div>
+
+		<!-- /section:basics/navbar.layout -->
+		<div class="main-container" id="main-container">
+
+			<!-- #section:basics/sidebar -->
+			<div id="sidebar" class="sidebar responsive">
+
+				<ul class="nav nav-list">
+					<li class="">
+						<a href="/index/index.html">
+							<i class="menu-icon fa fa-tachometer"></i>
+							<span class="menu-text"> 总控制台 </span>
+						</a>
+
+						<b class="arrow"></b>
+					</li>
+
+					<li class="active open">
+						<a href="#" class="dropdown-toggle">
+							<i class="menu-icon fa fa-pencil-square-o"></i>
+							<span class="menu-text"> 合同管理 </span>
+
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
+
+						<b class="arrow"></b>
+
+						<ul class="submenu">
+             				<li class="">
+                                <a href="/table/contract_table.html">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    我的合同
+                                </a>
+
+                                <b class="arrow"></b>
+                            </li>
+
+							<li class="active">
+								<a href="/contract/contract_add.html">
+									<i class="menu-icon fa fa-caret-right"></i>
+									添加合同
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+						</ul>
+					</li>
+
+				</ul><!-- /.nav-list -->
+
+
+				<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+					<i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+				</div>
+
+			</div>
+
+			<!-- /section:basics/sidebar -->
+			<div class="main-content">
+				<div class="breadcrumbs" id="breadcrumbs">
+					<ul class="breadcrumb">
+						<li>
+							<i class="ace-icon fa fa-home home-icon"></i>
+							<a href="/index/index.html">首页</a>
+						</li>
+						<li>
+							<a href="javascript:void(0)">合同管理</a>
+						</li>
+
+
+						<li>
+							<a href="/contract/contract_add.html">添加合同</a>
+						</li>
+					</ul><!-- /.breadcrumb -->
+
+					<!-- #section:basics/content.searchbox -->
+					<div class="nav-search" id="nav-search">
+						<form class="form-search">
+							<span class="input-icon">
+								<input type="text" placeholder="请输入关键字 ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+								<i class="ace-icon fa fa-search nav-search-icon"></i>
+							</span>
+						</form>
+					</div><!-- /.nav-search -->
+				</div>
+
+				<!-- /section:basics/content.breadcrumbs -->
+				<div class="page-content">
+
+					<div class="page-content-area">
+
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+								<form id="form-list" class="form-horizontal" role="form">
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-select-1">合同类型：</label>
+										<div class="col-sm-2">
+											<div class="pos-rel">
+												<select class="form-control" id="form-field-select-1" name="typename">
+													<option value="">请选择合同类型</option>
+													<option value="1">硬件</option>
+													<option value="2">软件</option>
+													<option value="3">网络</option>
+													<option value="4">其他</option>
+												</select>
+											</div>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 合同名称：</label>
+
+										<div class="col-sm-9">
+											<input type="text" id="form-field-1" name="name" placeholder="输入合同名称" class="col-xs-10 col-sm-5" />
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2">供应商名称： </label>
+
+										<div class="col-sm-9">
+											<input type="text" id="form-field-2" name="company_name" placeholder="输入供应商公司名称" class="col-xs-10 col-sm-5" />
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-3">供应商负责人： </label>
+
+										<div class="col-sm-9">
+											<input type="text" id="form-field-3" name="responsible" placeholder="输入供应商负责人" class="col-xs-10 col-sm-5" />
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="phone">负责人电话：</label>
+										<div class="col-xs-12 col-sm-5">
+											<div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="ace-icon fa fa-phone"></i>
+                                                </span>
+												<input type="tel" id="phone" name="phone" />
+											</div>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-select-2">职场：</label>
+										<div class="col-sm-2">
+											<div class="pos-rel">
+												<select class="form-control" id="form-field-select-2" name="workplace_name">
+													<option value="">请选择大道职场</option>
+													<option value="1">深圳总部</option>
+													<option value="2">深圳分部</option>
+													<option value="3">佛山分部</option>
+													<option value="4">郑州分部</option>
+												</select>
+											</div>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="col-xs-12 col-sm-3 control-label no-padding-right" for="id-date-range-picker-1">合同起始日期：</label>
+										<div class="input-group col-sm-2">
+												<span class="input-group-addon">
+													<i class="fa fa-calendar bigger-110"></i>
+												</span>
+											<input class="form-control" type="text" name="date-range-picker" id="id-date-range-picker-1" />
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="limited">备注：</label>
+										<div class="input-group col-sm-2">
+											<div class="pos-rel">
+												<textarea class="form-control limited autosize-transition" id="limited" name="remark" maxlength="50"></textarea>
+											</div>
+										</div>
+									</div>
+
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="upload">上传文件： </label>
+										<div class="fallback col-sm-9">
+											<input id="upload" name="upload_file" type="file" multiple="" />
+										</div>
+									</div>
+
+
+									<div class="clearfix form-actions">
+										<div class="col-md-offset-3 col-md-9">
+											<button id="contract-add-button" class="btn btn-info" type="button" onclick="add_contract();">
+												<i class="ace-icon fa fa-check bigger-110"></i>
+												添加
+											</button>
+											&nbsp; &nbsp; &nbsp;
+											<button class="btn" type="reset">
+												<i class="ace-icon fa fa-undo bigger-110"></i>
+												重置
+											</button>
+										</div>
+									</div>
+								</form>
+
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div><!-- /.page-content-area -->
+				</div><!-- /.page-content -->
+			</div><!-- /.main-content -->
+
+			<div class="footer">
+				<div class="footer-inner">
+					<!-- #section:basics/footer -->
+					<div class="footer-content">
+						<span class="bigger-120">
+							 深圳前海大道金融服务有限公司<a href="http://www.ddjf.com.cn/" target="_blank">【大道金服】</a>
+						</span>
+					</div>
+
+					<!-- /section:basics/footer -->
+				</div>
+			</div>
+
+			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+				<i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+			</a>
+		</div><!-- /.main-container -->
+
+		<!-- basic scripts -->
+
+		<!--[if !IE]> -->
+		<script type="text/javascript">
+            window.jQuery || document.write("<script src='/static/js/jquery.min.js'>"+"<"+"/script>");
+		</script>
+
+		<!-- <![endif]-->
+
+		<!--[if IE]>
+		<script type="text/javascript">
+			window.jQuery || document.write("<script src='/static/js/jquery1x.min.js'>"+"<"+"/script>");
+		</script>
+		<![endif]-->
+		<script type="text/javascript">
+            if('ontouchstart' in document.documentElement) document.write("<script src='/static/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+		</script>
+		<script src="/static/js/bootstrap.min.js"></script>
+
+		<!-- page specific plugin scripts -->
+
+		<!--[if lte IE 8]>
+		<script src="/static/js/excanvas.min.js"></script>
+		<![endif]-->
+		<script src="/static/js/jquery-ui.custom.min.js"></script>
+		<script src="/static/js/jquery.ui.touch-punch.min.js"></script>
+		<script src="/static/js/chosen.jquery.min.js"></script>
+		<script src="/static/js/fuelux.spinner.min.js"></script>
+		<script src="/static/js/bootstrap-datepicker.min.js"></script>
+		<script src="/static/js/bootstrap-timepicker.min.js"></script>
+		<script src="/static/js/moment.min.js"></script>
+		<script src="/static/js/daterangepicker.min.js"></script>
+		<script src="/static/js/bootstrap-datetimepicker.min.js"></script>
+		<script src="/static/js/bootstrap-colorpicker.min.js"></script>
+		<script src="/static/js/jquery.knob.min.js"></script>
+		<script src="/static/js/jquery.autosize.min.js"></script>
+		<script src="/static/js/jquery.inputlimiter.1.3.1.min.js"></script>
+		<script src="/static/js/jquery.maskedinput.min.js"></script>
+		<script src="/static/js/bootstrap-tag.min.js"></script>
+		<script src="/static/js/typeahead.jquery.min.js"></script>
+
+		<!-- ace scripts -->
+		<script src="/static/js/ace-elements.min.js"></script>
+		<script src="/static/js/ace.min.js"></script>
+
+		<!-- inline scripts related to this page -->
+		<script type="text/javascript">
+            function add_contract() {
+                var list = $("#form-list").serialize();
+                console.log(list);
+                $.ajax({
+                    type:'POST',
+                    url:'contract',
+                    data:list,
+                    success:function (data) {
+
+                    }
+
+                });
+            };
+
+            jQuery(function($) {
+                $('.chosen-select').chosen({allow_single_deselect:true});
+
+                $(window)
+                    .off('resize.chosen')
+                    .on('resize.chosen', function() {
+                        $('.chosen-select').each(function() {
+                            var $this = $(this);
+                            $this.next().css({'width': $this.parent().width()});
+                        })
+                    }).trigger('resize.chosen');
+
+                $('[data-rel=tooltip]').tooltip({container:'body'});
+                $('[data-rel=popover]').popover({container:'body'});
+
+                $('textarea[class*=autosize]').autosize({append: "\n"});
+                $('textarea.limited').inputlimiter({
+                    remText: ' 还能再输入%n个字...',
+                    limitText: '最多只能输入 : %n 个字.'
+                });
+
+                $.mask.definitions['~']='[+-]';
+                $('.input-mask-date').mask('99/99/9999');
+                $('.input-mask-phone').mask('(999) 999-9999');
+                $('.input-mask-eyescript').mask('~9.99 ~9.99 999');
+                $(".input-mask-product").mask("a*-999-a999",{placeholder:" ",completed:function(){alert("You typed the following: "+this.val());}});
+
+
+                //or change it into a date range picker
+                $('.input-daterange').datepicker({autoclose:true});
+
+
+                //to translate the daterange picker, please copy the "examples/daterange-fr.js" contents here before initialization
+                $('input[name=date-range-picker]').daterangepicker({
+                    'applyClass' : 'btn-sm btn-success',
+                    'cancelClass' : 'btn-sm btn-default',
+                    locale: {
+                        applyLabel: 'Apply',
+                        cancelLabel: 'Cancel',
+                    }
+                })
+                    .prev().on(ace.click_event, function(){
+                    $(this).next().focus();
+                });
+
+                $(".knob").knob();
+            });
+		</script>
+	</body>
+</html>
