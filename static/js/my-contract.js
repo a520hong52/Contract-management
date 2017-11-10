@@ -124,20 +124,43 @@
     //修改
     $('#btn_edit').click(function(){
 		var row = $('#mytable').bootstrapTable('getSelections')
-		console.log(row);
-		console.log(row[1]);
 		if (row.length == 0){
 		    alert('请选择需要修改的一行');
             $('#btn_edit').attr("data-target","#");
 		}
 		else if (row.length == 1){
             $('#btn_edit').attr("data-target","#myModal");
-            var name = row.name
-            $('#form-field-1').val(row.name)
+			$('#form-field-select-1').val(row[0].contract_admin_type_id);
+			$('#form-field-select-2').val(row[0].contract_admin_workplace_id);
+			$('#id-date-range-picker-1').val(row[0].start_date +" - "+ row[0].end_date );
+            $('#form-field-1').val(row[0].name);
+            $('#form-field-2').val(row[0].company_name);
+            $('#form-field-3').val(row[0].responsible);
+            $('#phone').val(row[0].phone);
+            $('#limited').val(row[0].remark);
 
+            $('input[name="date-range-picker"]').daterangepicker({
+				'applyClass' : 'btn-sm btn-success',
+				'cancelClass' : 'btn-sm btn-default',
+			locale: {
+				applyLabel: '确认',
+				cancelLabel: '取消',
+				fromLabel : '起始时间',
+				toLabel : '结束时间',
+				firstDay : 1,
+			},
+			opens : 'right',    // 日期选择框的弹出位置
+			separator : ' - ',
+			showWeekNumbers : true,     // 是否显示第几周
+			format: 'YYYY-MM-DD'   //格式化时间
+			})
+				.prev().on(ace.click_event, function(){
+				$(this).next().focus();
+			})
 		}
 		else {
             alert('不支持多行的修改');
             $('#btn_edit').attr("data-target","#");
 		}
 	});
+

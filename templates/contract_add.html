@@ -422,15 +422,22 @@
                     'applyClass' : 'btn-sm btn-success',
                     'cancelClass' : 'btn-sm btn-default',
                     locale: {
-                        applyLabel: 'Apply',
-                        cancelLabel: 'Cancel',
-                    }
+                        applyLabel: '确认',
+                        cancelLabel: '取消',
+						fromLabel : '起始时间',
+            			toLabel : '结束时间',
+						firstDay : 1,
+                    },
+					opens : 'right',    // 日期选择框的弹出位置
+					separator : ' - ',
+        			showWeekNumbers : true,     // 是否显示第几周
+                    format: 'YYYY-MM-DD'   //格式化时间
                 })
                     .prev().on(ace.click_event, function(){
                     $(this).next().focus();
                 });
 
-                $(".knob").knob();
+                //$(".knob").knob();
             });
 		</script>
 	</body>
