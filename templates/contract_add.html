@@ -204,6 +204,7 @@
 												</select>
 											</div>
 										</div>
+										<span style="color:red" class="col-sm-1 control-label no-padding-right">*</span>
 									</div>
 
 									<div class="form-group">
@@ -379,9 +380,14 @@
                     url:'contract',
                     data:list,
                     success:function (data) {
-
+						if (data.msg = "success"){
+						    //清空重置表单
+						    $('#form-list')[0].reset();
+                        }
+						else {
+						    alert(data.msg)
+						}
                     }
-
                 });
             };
 

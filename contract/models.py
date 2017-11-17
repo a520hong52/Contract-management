@@ -12,10 +12,12 @@ class ContractAdmin(models.Model):
     #username = models.CharField(max_length=10,verbose_name=u'大道负责人')
     start_date = models.DateField(verbose_name=u'合同开始日期')
     end_date = models.DateField(verbose_name=u'合同结束日期')
+    days = models.CharField(max_length=10, verbose_name=u'到期天数',null=True,blank=True)
     remark = models.CharField(max_length=50,verbose_name=u'备注',null=True,blank=True)
     upload_file = models.FileField(verbose_name=u'文件',upload_to='upload/%Y/%m/%d', storage=FileStorage(),null=True,blank=True)
     create_time = models.DateTimeField(auto_now_add=True,verbose_name=u'创建时间')
     change_time = models.DateTimeField(auto_now=True,verbose_name=u'修改时间')
+
 
     contract_admin_type = models.ForeignKey('ContractType')
     contract_admin_workplace = models.ForeignKey('Workplace')

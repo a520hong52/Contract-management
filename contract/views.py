@@ -11,6 +11,7 @@ import json
 
 def Contract_info_add(request):
     if request.method == 'POST':
+        message = {"msg": ""}
         #获取日期范围的值
         date_range = request.POST.get('date-range-picker')
         type_id = request.POST.get('typename')
@@ -24,8 +25,7 @@ def Contract_info_add(request):
             try:
                 for key,value in start_end_list.items():
                     #按数据库日期类型格式化获取的日期时间
-                    format_date = datetime.strptime(date_range.split(' - ')[value], "%m/%d/%Y")
-                    format_date = datetime.strftime(format_date, "%Y-%m-%d")
+                    format_date = date_range.split(' - ')[value]
                     start_end_list[key] = format_date
                 del form_dict['date-range-picker']
                 del form_dict['typename']
@@ -35,16 +35,18 @@ def Contract_info_add(request):
                 form_dict['contract_admin_workplace_id'] = workplace_id
                 #form_dict.dict()将QueryDict对象转成dict
                 models.ContractAdmin.objects.create(**form_dict.dict())
-                return JsonResponse("hello,this is a test")
+                message = {"msg": "success"}
+                return JsonResponse(message,safe=False)
             except Exception, e:
-                pass
-
-        else:
-            pass
-    return render_to_response('contract_add.html')
+                message = {"msg": e}
+                return JsonResponse(message, safe=False)
+    if request.method == 'GET':
+        return render_to_response('contract_add.html')
 
 def Contract_tables(request):
     if request.method == 'GET':
+        return render(request, 'contract_table.html')
+    if request.method == 'POST':
         return render(request, 'contract_table.html')
 
 #通过map函数，将data.values()里面的数据按照format_datetime函数格式化日期时间的值为指定格式，并得到一个新的list列表
@@ -77,7 +79,7 @@ def Getpage(request):
 
 def Delete(request):
     if request.method == 'POST':
-        messge = {"status":""}
+        message = {"status":""}
         id = request.POST.getlist('id',None)
         if id == None:
             pass
@@ -85,10 +87,10 @@ def Delete(request):
             try:
                 for ids in id:
                     models.ContractAdmin.objects.get(id=ids).delete()
-                messge = {"status":"success"}
+                message = {"status":"success"}
             except Exception, e:
-                messge = {"status": "数据删除失败"}
-        return JsonResponse(messge, safe=False)
+                message = {"status": "数据删除失败"}
+        return JsonResponse(message, safe=False)
 
 def Search(request):
     typenameID = request.GET.get('typeName')
@@ -115,3 +117,36 @@ def Search(request):
     total = data.count()
     data = data[pageIndex * pageSize:(pageIndex + 1) * pageSize]
     return JsonResponse({'total': total, 'rows': map(do_try, map(format_datetime, data.values()))})
+
+def Update(request):
+    if request.method == 'POST':
+        message = {"msg":""}
+        #获取日期范围的值
+        id = request.POST.get('id')
+        date_range = request.POST.get('date-range-picker')
+        type_id = request.POST.get('typename')
+        workplace_id = request.POST.get('workplace_name')
+        #获取form表单提交的可修改的QueryDict数据(.copy)
+        form_dict = request.POST.copy()
+        print form_dict
+        start_end_list = {'start_date':0,'end_date':1}
+        #不为空
+        if date_range.strip() and type_id.strip() and workplace_id.strip():
+            try:
+                for key,value in start_end_list.items():
+                    #按数据库日期类型格式化获取的日期时间
+                    format_date = date_range.split(' - ')[value]
+                    start_end_list[key] = format_date
+                del form_dict['date-range-picker']
+                del form_dict['typename']
+                del form_dict['workplace_name']
+                form_dict.update(start_end_list)
+                form_dict['contract_admin_type_id']=type_id
+                form_dict['contract_admin_workplace_id'] = workplace_id
+                #form_dict.dict()将QueryDict对象转成dict
+                models.ContractAdmin.objects.filter(id=id).update(**form_dict.dict())
+                message = {"msg": "success"}
+                return JsonResponse(message, safe=False)
+            except Exception, e:
+                message = {"msg": e}
+                return JsonResponse(message, safe=False)

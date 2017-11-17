@@ -63,12 +63,16 @@
         		field:'contract_admin_workplace',
         	},
         	{
-        		title:'合同开始日期',
+        		title:'开始日期',
         		field:'start_date'
         	},
         	{
-        		title:'合同结束日期',
+        		title:'结束日期',
         		field:'end_date'
+        	},
+			{
+        		title:'到期天数',
+        		field:'days'
         	},
         	{
         		title:'备注',
@@ -92,11 +96,7 @@
     }
 	//搜索
 	$('#search').click(function(){
-		$('#mytable').bootstrapTable('refresh',
-			{
-				url: './search'
-
-			}
+		$('#mytable').bootstrapTable('refresh', { url: './search' }
 		);
     })
 
@@ -112,7 +112,7 @@
 			data:{id:ids},
 			success:function(data){
 				if (data.status == 'success') {
-                    $('#mytable').bootstrapTable('remove', {field: 'id', values: ids});
+						$('#mytable').bootstrapTable('remdove', {field: 'id', values: ids});
                 }
                 else {
 					alert(data.status);
@@ -124,6 +124,7 @@
     //修改
     $('#btn_edit').click(function(){
 		var row = $('#mytable').bootstrapTable('getSelections')
+		var id = row.id
 		if (row.length == 0){
 		    alert('请选择需要修改的一行');
             $('#btn_edit').attr("data-target","#");
@@ -133,6 +134,7 @@
 			$('#form-field-select-1').val(row[0].contract_admin_type_id);
 			$('#form-field-select-2').val(row[0].contract_admin_workplace_id);
 			$('#id-date-range-picker-1').val(row[0].start_date +" - "+ row[0].end_date );
+			$('#form-field-0').val(row[0].id);
             $('#form-field-1').val(row[0].name);
             $('#form-field-2').val(row[0].company_name);
             $('#form-field-3').val(row[0].responsible);
@@ -163,4 +165,27 @@
             $('#btn_edit').attr("data-target","#");
 		}
 	});
+
+	//提交更改
+	$('#sub_update').click(function() {
+		var form_val = $("#form_edit").serialize()
+		console.log(form_val)
+		$.ajax({
+			url: './update',
+			type: 'POST',
+			traditional: true,
+			data: form_val,
+			success: function (data) {
+				if (data.msg = "success"){
+					//关闭模态框
+					$('#myModal').modal('hide');
+					$('#mytable').bootstrapTable('refresh', {url: './getpage'});
+				}
+				else {
+					alert(data.msg);
+				}
+
+			}
+		});
+	})
 

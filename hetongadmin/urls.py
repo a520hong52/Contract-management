@@ -29,6 +29,7 @@ urlpatterns = [
     url(r'^table/getpage', views.Getpage),
     url(r'^table/delete', views.Delete),
     url(r'^table/search', views.Search),
+    url(r'^table/update', views.Update),
     url(r'^table/', views.Contract_tables),
 
     #url(r'^login/',include('login.urls')),
